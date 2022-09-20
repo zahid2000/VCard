@@ -1,0 +1,16 @@
+﻿@model VCardModel
+
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+           @Html.Raw(Model.SVGImg)
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@Model.FirstName @Model.Surname</h5>
+            <p class="card-text"> Telefon : @Model.Phone</p>
+            <p class="card-text"> Email : @Model.Email</p>
+            <p class="card-text"> Ölkə : @Model.Country</p>
+            <p class="card-text"> Şəhər : @Model.City</p>
+        </div>
+    </div>
+</div>

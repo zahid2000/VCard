@@ -1,0 +1,27 @@
+﻿@model IEnumerable<VCardModel>
+
+<div class="container-fluid my-4 p-3">
+    <div class="row row-cols-1  row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-2 mb-4">
+
+        @foreach (var item in Model)
+        {
+            <div class="col" >
+                <div class="container">
+                    <div class="card" style="height:32rem;">
+                        <div class="card-header">
+                            @Html.Raw(item.SVGImg)
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@item.FirstName @item.Surname</h5>
+                            <p class="card-text"> Telefon : @item.Phone</p>
+                            <p class="card-text"> Email : @item.Email</p>
+                            <p class="card-text"> Ölkə : @item.Country</p>
+                            <p class="card-text"> Şəhər : @item.City</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
