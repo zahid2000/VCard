@@ -1,5 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<VCardModel>
+
 @{
+    ViewData["Title"] = "Contacts";
 }
+
+
+
+<div class="container my-4">
+    @if ((int)ViewData["count"] > 0)
+    {
+        
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@((int)ViewData["count"]) contacts</strong> Added to database
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-6">
+            <form asp-action="Index" class="form-control">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="value" placeholder="Enter contact count and search value">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-add-vcards">Get Contact or Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <form asp-action="SaveContactsFromUrl" class="form-control">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="url" value="https://randomuser.me/api?results=50" />
+                    <button class="btn btn-outline-secondary" type="submit" id="button-add-vcards">Add Contacts</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <partial name="_ContactCardsPartialView" model="Model"></partial>
+</div>

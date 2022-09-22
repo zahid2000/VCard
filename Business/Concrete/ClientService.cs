@@ -19,7 +19,7 @@ namespace VCard.Services.Concrete
         public async Task<List<VCardModel>> GetAllVCardAsyncFromUrl(string url)
         {
             List<VCardModel> cards = new List<VCardModel>();
-            var request = WebRequest.Create("https://randomuser.me/api?results=50");
+            var request = WebRequest.Create(url);
             request.Method = "GET";
 
             using (var webResponse = await request.GetResponseAsync())

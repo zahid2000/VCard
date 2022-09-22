@@ -1,22 +1,21 @@
-﻿@using Entities;
+﻿
 @model IEnumerable<VCardModel>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Contacts";
 }
 
 
 
-<div class="container my-4">
-      <form asp-action="Index">
+<div  class="container my-4">
+      <form asp-action="Index" >
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="count" placeholder="Enter contact count">
-            <button class="btn btn-outline-secondary" type="submit"  id="button-add-vcards">
-                Get Contact
-             </button>
+            <input type="text" class="form-control" name="value" placeholder="Enter contact count and search value">
+            <button class="btn btn-outline-secondary" type="submit" id="button-add-vcards">Get Contact or Search</button>
         </div>
-     </form>
-
+      </form>
+      
+    <partial name="_ContactCardsPartialView" model="Model"></partial>*
     @*@Html.Partial("_ContactTable",@Model)*@
-    @Html.Partial("_ContactCards",@Model)
+    @*@Html.Partial("_ContactCards",@Model)*@
 </div>

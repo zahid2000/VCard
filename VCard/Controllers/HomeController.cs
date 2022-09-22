@@ -11,7 +11,7 @@ namespace VCard.Controllers
         private readonly IClientService _clientService;
         private readonly IVCardService _vCardService;
 
-     
+
         public HomeController(ILogger<HomeController> logger, IClientService clientService, IVCardService vCardService)
         {
             _logger = logger;
@@ -19,18 +19,36 @@ namespace VCard.Controllers
             _vCardService = vCardService;
         }
 
-        public async Task<IActionResult> Index(int count=0)
+        public async Task<IActionResult> Index(string value)
         {
             //await _clientService.GetAllVCardFromUrlAndSaveDB("https://randomuser.me/api?results=50");
 
-            return count == 0
-              ? View(await _vCardService.GetAllAsyncByCount(null, 50))
-              : View(await _vCardService.GetAllAsyncByCount(null,count));
-           
+            if (int.TryParse(value, out int count))
+            {
+                return count == 0
+                           ? View(await _vCardService.GetAllAsyncByCount(null, 50))
+                           : View(await _vCardService.GetAllAsyncByCount(null, count));
+            }
+            else
+            {
+                return value == null
+                            ? View(await _vCardService.GetAllAsyncByCount(null, 50))
+                            : View(await _vCardService.GetAllAsync(x =>
+                            x.FirstName.ToLower().Contains(value) ||
+                            x.Surname.ToLower().Contains(value) ||
+                            x.Email.ToLower().Contains(value)||
+                            x.Phone.ToLower().Contains(value) ||
+                            x.Country.ToLower().Contains(value) ||
+                            x.City.ToLower().Contains(value) 
+                            ));
+            }
+
+
         }
 
         public IActionResult Privacy()
         {
+            
             return View();
         }
 
@@ -39,5 +57,6 @@ namespace VCard.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+       
     }
 }

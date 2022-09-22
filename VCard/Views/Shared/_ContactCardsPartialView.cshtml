@@ -5,13 +5,13 @@
 
         @foreach (var item in Model)
         {
-            <div class="col" >
+            <div class="col">
                 <div class="container">
-                    <div class="card" style="height:32rem;">
+                    <div class="card shadow-lg rounded-3">
                         <div class="card-header">
                             @Html.Raw(item.SVGImg)
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="height:18rem;">
                             <h5 class="card-title">@item.FirstName @item.Surname</h5>
                             <p class="card-text"> Telefon : @item.Phone</p>
                             <p class="card-text"> Email : @item.Email</p>
